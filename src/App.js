@@ -11,12 +11,8 @@ class CommentList extends Component {
     return (
     <div>	
       <SideBar />
-      	<Grid style={{display: 'flex', justifyContent: 'center'}}>
-      		<SearchBar />	
-      	</Grid>	
-        <Grid style={{position: 'absolute', bottom: 0}}>
-      	 <Footer />
-        </Grid> 
+      <SearchBar />	
+      <Footer />
     </div>  
     )
   }
