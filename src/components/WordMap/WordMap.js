@@ -1,7 +1,8 @@
 //CommentBox.js
 import React, {Component} from 'react';
-import WordCloud from 'wordcloud'
-import {Button} from 'semantic-ui-react';
+import ReactDOM from 'react-dom';
+import WordCloud from 'wordcloud';
+import styles from './WordMap.css'
 
 class WordMap extends Component {
   constructor(props) {
@@ -9,24 +10,36 @@ class WordMap extends Component {
   }
 
   componentWillMount () {
-    var wordList = [["foo", 12], ["bar", 6], ["bat", 10], ["base", 8], ["barbell", 8], ["bastion", 6], ["beesaws", 4], ["filipino", 2]]
-    });
+    const wordList = [];
+
     this.setState({words: wordList});
   }
 
   componentDidMount() {
-    var canvas = ReactDOM.findDOMNode(this.refs.canvas)
-    var test = [["foo", 12], ["bar", 6]];
-    var words = this.state.words;
-    console.log(words);
-    console.log(test)
+    const canvas = ReactDOM.findDOMNode(this.refs.canvas)
+    const states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+    let test = []
+    states.map((word) => {
+      test.push([word, Math.floor(Math.random() * 5) + 1  ])
+    })
 
-    WordCloud(canvas, { list: test, color: "random-dark", shape: "circle", color:"green", wait: 0, backgroundColor:"black"});
+    const words = this.state.words;
+    const options = {
+      list: test,
+      shape: "circle",
+      color:"green",
+      fontFamily: "Finger Paint, cursive, sans-serif",
+      weightFactor: 3,
+      wait: 0,
+      backgroundColor:"black"
+    }
+
+    WordCloud(canvas, options);
   }
 
   render() {
     return (
-      <div className={styles.cloudCanvasContainer}>
+      <div className={styles}>
         <canvas ref="canvas"></canvas>
       </div>
 

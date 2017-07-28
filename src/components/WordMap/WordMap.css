@@ -1,0 +1,9 @@
+.wordmap {
+  height: 500px;
+  width: 80%;
+}
+
+canvas {
+  height: auto;
+  width: 75%;
+}

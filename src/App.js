@@ -1,12 +1,12 @@
 //CommentList.js
 import React, {Component} from 'react';
-import CommentBox from './containers/CommentBox';
+import WordMap from './components/WordMap/WordMap'
 
-class CommentList extends Component {
+class App extends Component {
   render() {
     return (
-      <CommentBox />
+      <WordMap />
     )
   }
 }
-export default CommentList;
+export default App;
