@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import WordCloud from 'wordcloud';
+import { Grid }  from 'semantic-ui-react'
 import styles from './WordMap.css'
 
 class WordMap extends Component {
@@ -29,7 +30,7 @@ class WordMap extends Component {
       shape: "circle",
       color:"green",
       fontFamily: "Finger Paint, cursive, sans-serif",
-      weightFactor: 3,
+      weightFactor: 5,
       wait: 0,
       backgroundColor:"black"
     }
@@ -39,9 +40,9 @@ class WordMap extends Component {
 
   render() {
     return (
-      <div className={styles}>
-        <canvas ref="canvas"></canvas>
-      </div>
+      <Grid centered>
+        <canvas ref="canvas" width="600" height="600"></canvas>
+      </Grid>
 
     )
   }
