@@ -1,11 +1,14 @@
 //CommentList.js
 import React, {Component} from 'react';
 import CommentBox from './containers/CommentBox';
+import SideBar from './components/sidebar';
 
 class CommentList extends Component {
   render() {
     return (
-      <CommentBox />
+    <div>	
+      <SideBar />		
+    </div>  
     )
   }
 }
