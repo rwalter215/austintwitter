@@ -13,6 +13,7 @@
     "mongoose": "^4.11.4",
     "nodemon": "^1.11.0",
     "react": "^15.6.1",
+    "react-color": "^2.13.4",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.10",
     "semantic-ui-react": "^0.71.2"
