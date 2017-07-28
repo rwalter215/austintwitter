@@ -8,12 +8,21 @@ import Footer from './components/Footer';
 
 class CommentList extends Component {
   render() {
+  	const imageUrl = 'http://i.imgur.com/1LhGj.jpg'
+  	const divStyle ={
+  		color: 'white',
+  		backgroundImage: 'url(' + imageUrl + ')',
+  		WebkitTransition: 'all',
+  		msTransition: 'all'
+  	} 
     return (
-    <div>	
+    <div style={divStyle}>	
+    <Grid>	
       <SideBar />
       <SearchBar />	
       <Footer />
-    </div>  
+    </Grid>  
+    </div>
     )
   }
 }

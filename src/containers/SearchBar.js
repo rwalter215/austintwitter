@@ -48,6 +48,7 @@ export default class SearchExampleStandard extends Component {
 
     return (
       <Grid style={{display: 'flex', justifyContent: 'center'}}>
+      <div>
         <Grid.Column width={16} height ={8}>
           <div style={style}>Tweety Bat</div>
             <Search 
@@ -59,7 +60,9 @@ export default class SearchExampleStandard extends Component {
               {...this.props}
             /> 
         </Grid.Column>  
-      </Grid>    
+        </div>
+      </Grid>
+          
     )
   }
 }

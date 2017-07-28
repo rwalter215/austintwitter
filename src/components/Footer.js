@@ -9,7 +9,7 @@ class Footer extends Component {
   render() {
     const { visible } = this.state
     return (
-      <Grid style={{position: 'absolute', bottom: 0}}>
+      <Grid.Row verticalAlign='bottom'>
       <div>
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='overlay' direction='top' visible={!visible} inverted>
@@ -25,7 +25,7 @@ class Footer extends Component {
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
-      </Grid>
+      </Grid.Row>
     )
   }
 }
