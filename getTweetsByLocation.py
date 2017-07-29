@@ -45,7 +45,7 @@ class CustomStreamListener(tweepy.StreamListener):
 
 
 sapi = tweepy.streaming.Stream(auth, CustomStreamListener())
-sapi.filter(locations=[-6.38, 49.87, 1.77, 55.81], track=[''], async=True)
+sapi.filter(locations=[-96.6221, 29.6019, -96.0042, 30.0968], track=[''], async=True)
 # sapi.filter(track=['twitter'], async=True) # apply any filter you want
 time.sleep(runtime) # halts the control for runtime seconds
 
