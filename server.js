@@ -1,22 +1,39 @@
 //server.js
 'use strict'
 //first we import our dependencies…
+require('dotenv').config()
 var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-
-//and create our instances
+var connection  = require('express-myconnection');
 var app = express();
-var router = express.Router();
-
-//set our port to either a predetermined port number if you have set 
-//it up, or 3001
+var expressValidator = require('express-validator');
+var path = require('path');
 var port = process.env.API_PORT || 3001;
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var mysql = require('mysql');
+var routes = require('./app/routes/api');
 
-//now we should configure the API to use bodyParser and look for 
-//JSON data in the request body
-app.use(bodyParser.urlencoded({ extended: true }));
+var HOST = process.env.HOST
+var USER = process.env.USER
+var PASSWD = process.env.PASSWD
+var DATABASE = process.env.DATABASE
+var PORT = process.env.PORT
+
+app.use(connection(mysql,{
+  host     : HOST,
+  user     : USER,
+  password : PASSWD,
+  port     : 3306,
+  database : DATABASE
+}));
+
+app.use(morgan('dev'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
+//app.use(express.static(__dirname + '/public')); // Allow front end to access public folder
+//app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+//app.use('/node_modules',  express.static(__dirname + '/node_modules'));
 
 //To prevent errors from Cross Origin Resource Sharing, we will set 
 //our headers to allow CORS with middleware like so:
@@ -30,14 +47,15 @@ app.use(function(req, res, next) {
  next();
 });
 
+app.use('/', routes);
+
 //now we can set the route path & initialize the API
+/*
 router.get('/', function(req, res) {
  res.json({ message: 'API Initialized!'});
 });
-
-//Use our router configuration when we call /api
-app.use('/api', router);
+*/
 //starts the server and listens for requests
 app.listen(port, function() {
- console.log('api running on port ${port}');
+ console.log('Your server is running on port ' + port);
 });
