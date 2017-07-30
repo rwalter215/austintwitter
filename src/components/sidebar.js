@@ -8,21 +8,19 @@ class SideBar extends Component {
 
   render() {
     const { visible } = this.state
+    const divStyle = {
+      width: 1000,
+      height: 50
+      
+    }
     return (
-      <div>
-        <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='overlay' direction='top' visible={!visible} inverted>
+      <div style={divStyle}>
+          <Sidebar as={Menu}  direction='top' visible={!visible} inverted>
             <Menu.Item name='bat'>
               <Icon src = "../../bat.png" />
               TweetyBat
             </Menu.Item>
           </Sidebar>
-          <Sidebar.Pusher>
-            <Segment basic>
-              <Header as='h3'>Application Content</Header>
-            </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
       </div>
     )
   }

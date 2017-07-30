@@ -13,10 +13,11 @@ class CommentList extends Component {
   		color: 'white',
   		backgroundImage: 'url(' + imageUrl + ')',
   		WebkitTransition: 'all',
-  		msTransition: 'all'
+  		msTransition: 'all',
+  		height: 820 	
   	} 
     return (
-    <div style={divStyle}>	
+    <div style= {divStyle}>	
     <Grid>	
       <SideBar />
       <SearchBar />	
