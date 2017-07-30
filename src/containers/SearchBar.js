@@ -40,16 +40,21 @@ export default class SearchExampleStandard extends Component {
   render() {
     const { isLoading, value, results } = this.state
     const style = {
-      color: "blue",
-      fontSize: "36px", 
-      margin: "30px",
-      textAlign: "center"
+      color: "white",
+      fontSize: "48px", 
+      marginTop: "100px",
+      marginBottom: "25px",
+      textAlign: "center",
+      width: 1300,  
+    }
+    const searchStyle = {
+      width: 1300
     }
 
     return (
       <Grid style={{display: 'flex', justifyContent: 'center'}}>
       <div>
-        <Grid.Column width={16} height ={8}>
+        <Grid.Column width={1} height={8}>
           <div style={style}>Tweety Bat</div>
             <Search 
               loading={isLoading}
@@ -57,6 +62,7 @@ export default class SearchExampleStandard extends Component {
               onSearchChange={this.handleSearchChange}
               results={results}
               value={value}
+              style={searchStyle}
               {...this.props}
             /> 
         </Grid.Column>  
