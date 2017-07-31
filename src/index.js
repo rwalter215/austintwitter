@@ -5,7 +5,6 @@ import App from './App';
 import WordMap from './components/WordMap/WordMap';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
-import { compose, createStore, applyMiddleware, combineReducers } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 ReactDOM.render(
