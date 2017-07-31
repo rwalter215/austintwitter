@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var collections = require('pycollections');
+var sw = require('stopword')
 
 function sortByCount (wordsMap) {
 
@@ -22,11 +23,24 @@ function sortByCount (wordsMap) {
 }
 
 ignore = {
-    "IS": "", "BY": "", "IN": "", "TO": "", "A": "", "AT": "", "FOR": "", "THE": "", "AND": "", "OF": "",
-    "OUR": "", "ON": "", "I": "", "YOU": "", "THIS": "", "BE": "", "I'M": "", "ST": "", "YOU": "", "OUT": "", 
-    "IF": "", "I'LL": "", "IT": "", "SO": "", "AN": "", "WE": "", "ME": "", "HOW": "", "NOW": "", "MY": "",
-    "IT'S": "", "HIS": "", "WAS": "", "BUT": "", "THAT": "", "WITH": ""
+    "a": "", "about": "", "above": "", "after": "", "again": "", "against": "", "all": "", "am": "", "an": "", "and": "", "any": "", "are": "", 
+    "aren't": "", "as": "", "at": "", "be": "", "because": "", "been": "", "before": "", "being": "", "below": "", "between": "", "both": "", 
+    "but": "", "by": "", "can't": "", "cannot": "", "could": "", "couldn't": "", "did": "", "didn't": "", "do": "", "does": "", "doesn't": "", 
+    "doing": "", "don't": "", "down": "", "during": "", "each": "", "few": "", "for": "", "from": "", "further": "", "had": "", "hadn't": "", 
+    "has": "", "hasn't": "", "have": "", "haven't": "", "having": "", "he": "", "he'd": "", "he'll": "", "he's": "", "her": "", "here": "", 
+    "here's": "", "hers": "", "herself": "", "him": "", "himself": "", "his": "", "how": "", "how's": "", "i": "", "i'd": "", "i'll": "", "i'm": "", 
+    "i've": "", "if": "", "in": "", "into": "", "is": "", "isn't": "", "it": "", "it's": "", "its": "", "itself": "", "let's": "", "me": "", "more": "", 
+    "most": "", "mustn't": "", "my": "", "myself": "", "no": "", "nor": "", "not": "", "of": "", "off": "", "on": "", "once": "", "only": "", "or": "", 
+    "other": "", "ought": "", "our": "", "ours": "", "ourselves": "", "out": "", "over": "", "own": "", "same": "", "shan't": "", "she": "", "she'd": "", 
+    "she'll": "", "she's": "", "should": "", "shouldn't": "", "so": "", "some": "", "such": "", "than": "", "that": "", "that's": "", "the": "", 
+    "their": "", "theirs": "", "them": "", "themselves": "", "then": "", "there": "", "there's": "", "these": "", "they": "", "they'd": "", "they'll": "", 
+    "they're": "", "they've": "", "this": "", "those": "", "through": "", "to": "", "too": "", "under": "", "until": "", "up": "", "very": "", "was": "", 
+    "wasn't": "", "we": "", "we'd": "", "we'll": "", "we're": "", "we've": "", "were": "", "weren't": "", "what": "", "what's": "", "when": "", 
+    "when's": "", "where": "", "where's": "", "which": "", "while": "", "who": "", "who's": "", "whom": "", "why": "", "why's": "", "with": "", 
+    "won't": "", "would": "", "wouldn't": "", "you": "", "you'd": "", "you'll": "", "you're": "", "you've": "", "your": "", "yours": "", "yourself": "", 
+    "yourselves": ""
 }
+
 
 //show the CRUD interface | GET
 router.get('/wordcloud/austin', function(req, res, next){
@@ -34,19 +48,20 @@ router.get('/wordcloud/austin', function(req, res, next){
     var result = {}
     var counter = {}
     var ordered = []
+    var words = []
     req.getConnection(function(err, conn){
         if (err) return next("Cannot Connect");
-        var query = conn.query('SELECT text FROM twitter', function(err, rows, fields){
+        var query = conn.query('SELECT text FROM tweets', function(err, rows){
             if(err) {
                 console.log(err);
                 return next("Mysql error, check your query");
             }
-            
             //console.log(rows[0]);
-            for (var i = 0; i < rows.length; i++){
+            for (var i = 0; i < 600; i++){
                 //console.log(rows[i]);
-                //console.log(rows[i]['text'].match(/(\b[^\s]+\b)/g));
-                var words = rows[i]['text'].match(/(\b[^\s]+\b)|(#[^\s]+\b)/g);
+                //console.log(rows[i]['text'].match(/(\b[^\s]+\b)|(#[^\s]+\b)/g));
+                words = rows[i]['text'].match(/(\b[^\s]+\b)|(#[^\s]+\b)|(@[^\s]+\b)/g);
+                //console.log(words);
                 //console.log(words.length);
                 
                 for (var j = 0; j < words.length; j++) {
@@ -54,7 +69,7 @@ router.get('/wordcloud/austin', function(req, res, next){
                     //console.log(counter.mostCommon());
                     if (words[j].toUpperCase() in counter) {
                         counter[words[j].toUpperCase()] += 1;
-                    } else if (!(words[j].toUpperCase() in ignore)) {
+                    } else if (!(words[j].toLowerCase() in ignore)) {
                         counter[words[j].toUpperCase()] = 1;
                     }
                     //console.log(counter[words[j]]);
@@ -62,7 +77,6 @@ router.get('/wordcloud/austin', function(req, res, next){
                 }
             }
             var sortedWords = sortByCount(counter);
-            console.log(sortedWords);
             //console.log(counter['items']());
             //mostCommon = counter.mostCommon();
             //console.log(mostCommon.length);
@@ -74,7 +88,7 @@ router.get('/wordcloud/austin', function(req, res, next){
         
             res.json({
             	success: true,
-            	words: rows
+            	words: ordered
             });
             
             //res.render('user',{title:"RESTful Crud Example",data:rows});
