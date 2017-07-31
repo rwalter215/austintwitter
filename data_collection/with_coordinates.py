@@ -1,14 +1,14 @@
 import sys
-import os
 import time
 import json
+from ConfigParser import ConfigParser
 import tweepy
 import MySQLdb
 from dateutil import parser
-from ConfigParser import ConfigParser
+
 
 config = ConfigParser()
-config.read('./collectors.conf')
+config.read('collectors.conf')
 
 CONSUMER_KEY = config.get('Twitter', 'CONSUMER_KEY')
 CONSUMER_SECRET = config.get('Twitter', 'CONSUMER_SECRET')
@@ -27,10 +27,10 @@ def store_data(tweet_id, screen_name, created_at, lat, lon, text):
     db=MySQLdb.connect(host=HOST, user=USER, passwd=PASSWD, db=DATABASE, charset="utf8mb4")
     cursor = db.cursor()
     if (lat is not None):
-        insert_query = "INSERT INTO tweets (tweet_id, screen_name, created_at, lat, lon, text) VALUES (%s, %s, %s, %s, %s, %s)"
+        insert_query = "INSERT INTO twitter (tweet_id, screen_name, created_at, lat, lon, text) VALUES (%s, %s, %s, %s, %s, %s)"
         cursor.execute(insert_query, (tweet_id, screen_name, created_at, lat, lon, text))
     else:
-        insert_query = "INSERT INTO tweets (tweet_id, screen_name, created_at, lat, lon, text) VALUES (%s, %s, %s, NULL, NULL, %s)"
+        insert_query = "INSERT INTO twitter (tweet_id, screen_name, created_at, lat, lon, text) VALUES (%s, %s, %s, NULL, NULL, %s)"
         cursor.execute(insert_query, (tweet_id, screen_name, created_at, text))
     db.commit()
     cursor.close()
@@ -49,20 +49,26 @@ class StreamListener(tweepy.StreamListener):
             # Decode the JSON from Twitter
             data = json.loads(tweet)
             # Grab the wanted data from the Tweet
-            tweet_id = data['id']
-            screen_name = data['user']['screen_name']
-            created_at = parser.parse(data['created_at']).strftime("%Y-%m-%d %H:%M:%S")
-
             if data['coordinates'] is not None:
+                tweet_id = data['id']
+                screen_name = data['user']['screen_name']
+                created_at = parser.parse(data['created_at']).strftime("%Y-%m-%d %H:%M:%S")
                 lat = data['coordinates']['coordinates'][1]
                 lon = data['coordinates']['coordinates'][0]
-            else:
-                lat = lon = None
-            #print out a message to the screen that we have collected a tweet
-            print ("Tweet collected at %s") % (str(created_at))
+                """
+                if data['coordinates'] is not None:
+                    lat = data['coordinates']['coordinates'][1]
+                    lon = data['coordinates']['coordinates'][0]
+                else:
+                    lat = lon = None
+                """
+                text = data['text']
+                print text
+                #print out a message to the screen that we have collected a tweet
+                print ("Tweet collected at %s") % (str(created_at))
 
-            #insert the data into the MySQL database
-            store_data(tweet_id, screen_name, created_at, lat, lon, text)
+                #insert the data into the MySQL database
+                store_data(tweet_id, screen_name, created_at, lat, lon, text)
         except Exception as e:
             print e
 

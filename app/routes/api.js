@@ -2,19 +2,19 @@ var express = require('express');
 var router = express.Router();
 
 //show the CRUD interface | GET
-router.get('/api', function(req, res, next){
+router.get('/wordcloud', function(req, res, next){
     //res.json({ message: 'API Initialized!'});
     
     req.getConnection(function(err, conn){
         if (err) return next("Cannot Connect");
-        var query = conn.query('SELECT * FROM twitter', function(err, rows){
-            if(err){
+        var query = conn.query('SELECT text FROM tweets', function(err, rows){
+            if(err) {
                 console.log(err);
                 return next("Mysql error, check your query");
             }
             res.json({
             	success: true,
-            	users: rows
+            	tweets: rows
             });
             //res.render('user',{title:"RESTful Crud Example",data:rows});
          });

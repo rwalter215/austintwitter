@@ -13,17 +13,17 @@ var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var routes = require('./app/routes/api');
 
-var HOST = process.env.HOST
-var USER = process.env.USER
+var HOST = process.env.SQLHOST
+var USER = process.env.SQLUSER;
 var PASSWD = process.env.PASSWD
-var DATABASE = process.env.DATABASE
-var PORT = process.env.PORT
+var DATABASE = process.env.SQLDB
+var PORT = process.env.SQLPORT
 
 app.use(connection(mysql,{
   host     : HOST,
   user     : USER,
   password : PASSWD,
-  port     : 3306,
+  port     : PORT,
   database : DATABASE
 }));
 
