@@ -43,32 +43,34 @@ export default class SearchExampleStandard extends Component {
       color: "white",
       fontSize: "48px", 
       marginTop: "100px",
-      marginBottom: "25px",
+      marginBottom: "30px",
       textAlign: "center",
-      width: 1300,  
+      top: "50px" 
     }
     const searchStyle = {
-      width: 1300
-    }
+      position: "relative",
+      top: "170px",
+      right: "425px"
+    } 
 
     return (
-      <Grid style={{display: 'flex', justifyContent: 'center'}}>
-      <div>
-        <Grid.Column width={1} height={8}>
-          <div style={style}>Tweety Bat</div>
-            <Search 
-              loading={isLoading}
-              onResultSelect={this.handleResultSelect}
-              onSearchChange={this.handleSearchChange}
-              results={results}
-              value={value}
-              style={searchStyle}
-              {...this.props}
-            /> 
-        </Grid.Column>  
-        </div>
-      </Grid>
-          
+      <div style={searchStyle}>
+        <Grid style={{display: 'flex', justifyContent: 'center', }}>
+        <div>
+          <Grid.Column fluid='false' >
+            <div style={style}>Tweety Bat</div>
+              <Search 
+                loading={isLoading}
+                onResultSelect={this.handleResultSelect}
+                onSearchChange={this.handleSearchChange}
+                results={results}
+                value={value}
+                {...this.props}
+              /> 
+          </Grid.Column>  
+          </div>
+        </Grid>
+      </div>      
     )
   }
 }
