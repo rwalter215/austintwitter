@@ -4,16 +4,28 @@ import ReactDOM from 'react-dom';
 import WordCloud from 'wordcloud';
 import { Grid }  from 'semantic-ui-react';
 //import getTrendingWords from '../../models/tweetModel.js'
+import axios from 'axios';
+
 import styles from './WordMap.css';
 
 class WordMap extends Component {
   constructor(props) {
     super(props);
+    this.state = { data: [] };
+
+    this.getTweet = this.getTweet.bind(this);
   }
 
-  componentWillMount () {
+  getTweet() {
+    axios.get('http://localhost:3001/wordcloud/:austin').then(res => {
+      console.log('resp: ', res)
+      this.setState({ data: res.data.users[0].screen_name })
+    })
+  }
+
+  componentWillMount() {
     const wordList = [];
-    //console.log('model: ', getTrendingWords.getTrendingWords)
+    this.getTweet()
 
     this.setState({words: wordList});
   }
@@ -34,10 +46,14 @@ class WordMap extends Component {
         return (word === 'ATX') ? '#ba5c12' : '#ffb86f';
       },
       fontFamily: "Times, serif",
-      weightFactor: 10,
+      weightFactor: 12,
       rotateRatio: 0.5,
       rotationSteps: 2,
       wait: 0,
+      click: (word, dimension, event) => {
+        const query = encodeURI(word);
+        window.location = 'http://www.google.com/search?q=' + query + '&btnI'
+      },
       backgroundColor:"#261132"
     }
 
@@ -46,8 +62,8 @@ class WordMap extends Component {
 
   render() {
     return (
-      <Grid.Row centered>
-        <canvas ref="canvas" width="600" height="600"></canvas>
+      <Grid.Row centered className='map' style={styles}>
+        <canvas ref="canvas" width="800" height="800"></canvas>
       </Grid.Row>
 
     )
