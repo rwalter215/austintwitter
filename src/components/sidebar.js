@@ -10,15 +10,16 @@ class SideBar extends Component {
     const { visible } = this.state
     const divStyle = {
       width: 1000,
-      height: 50
-      
+      height: 50,
+      fontFamily:'Bookman Old Style'  
     }
+
     return (
       <div style={divStyle}>
+          Tweety Bat
           <Sidebar as={Menu}  direction='top' visible={!visible} inverted>
             <Menu.Item name='bat'>
               <Icon src = "../../bat.png" />
-              TweetyBat
             </Menu.Item>
           </Sidebar>
       </div>

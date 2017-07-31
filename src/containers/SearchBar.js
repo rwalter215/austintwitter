@@ -42,6 +42,7 @@ export default class SearchExampleStandard extends Component {
     const style = {
       color: "white",
       fontSize: "48px", 
+      fontFamily: "Bookman Old Style",
       marginTop: "100px",
       marginBottom: "30px",
       textAlign: "center",

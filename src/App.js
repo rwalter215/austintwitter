@@ -12,19 +12,19 @@ class CommentList extends Component {
   	const divStyle ={
   		color: 'white',
   		//backgroundImage: 'url(' + imageUrl + ')',
-  		backgroundColor: '#5C246E',
+  		backgroundColor: '#261132',
   		WebkitTransition: 'all',
   		msTransition: 'all',
   		height: 820 	
   	} 
     return (
-    <div style= {divStyle}>	
-    <Grid>	
-      <SideBar />
-      <SearchBar />	
-      <Footer />
-    </Grid>  
-    </div>
+	 <div style= {divStyle}>	
+	   <Grid>	
+	    <SideBar />
+	    <SearchBar />	
+	    <Footer />
+	   </Grid>  
+	 </div>
     )
   }
 }
