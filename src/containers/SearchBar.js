@@ -45,7 +45,7 @@ export default class SearchExampleStandard extends Component {
       marginTop: "100px",
       marginBottom: "30px",
       textAlign: "center",
-      top: "50px" 
+      top: "50px"
     }
     const searchStyle = {
       position: "relative",

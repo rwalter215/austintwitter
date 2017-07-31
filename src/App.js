@@ -11,7 +11,8 @@ class CommentList extends Component {
   	const imageUrl = 'http://i.imgur.com/1LhGj.jpg'
   	const divStyle ={
   		color: 'white',
-  		backgroundImage: 'url(' + imageUrl + ')',
+  		//backgroundImage: 'url(' + imageUrl + ')',
+  		backgroundColor: '#5C246E',
   		WebkitTransition: 'all',
   		msTransition: 'all',
   		height: 820 	
