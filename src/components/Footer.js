@@ -10,7 +10,8 @@ class Footer extends Component {
     const { visible } = this.state
     const divStyle = {
       width: 1000,
-      bottom: "0px", 
+      bottom: "0px",
+      color: '#FF5A36' 
 
     }
     return (
