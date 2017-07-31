@@ -11,7 +11,7 @@ class SideBar extends Component {
     const divStyle = {
       width: 1000,
       height: 50,
-      fontFamily:'Bookman Old Style'  
+      fontFamily:'Bookman Old Style'
     }
 
     return (
