@@ -28,8 +28,6 @@ export default class SearchExampleStandard extends Component {
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
       const isMatch = (result) => re.test(result.title)
 
-      
-
       this.setState({
         isLoading: false,
         results: _.filter(source, isMatch),
@@ -39,39 +37,36 @@ export default class SearchExampleStandard extends Component {
 
   render() {
     const { isLoading, value, results } = this.state
-    const style = {
+    const mainStyle = {
       color: "white",
       fontSize: "48px", 
       fontFamily: "Bookman Old Style",
       marginTop: "100px",
-      marginBottom: "30px",
-      textAlign: "center",
-      top: "50px"
+      marginBottom: "30px"
     }
     const searchStyle = {
-      position: "relative",
-      top: "170px",
-      right: "425px"
+      display: "block"
     } 
 
+    const messageStyle = {
+      color: "white",
+      fontSize: "20px",
+      fontFamily: "Bookman Old Style"
+    }
+
     return (
-      <div style={searchStyle}>
-        <Grid style={{display: 'flex', justifyContent: 'center', }}>
-        <div>
-          <Grid.Column fluid='false' >
-            <div style={style}>Tweety Bat</div>
-              <Search 
-                loading={isLoading}
-                onResultSelect={this.handleResultSelect}
-                onSearchChange={this.handleSearchChange}
-                results={results}
-                value={value}
-                {...this.props}
-              /> 
-          </Grid.Column>  
-          </div>
-        </Grid>
-      </div>      
+          <Grid.Row style={searchStyle} centered>
+            <h2 style={mainStyle}>Trending</h2>
+              <h6>A simple UI for visualizing your city's tweets</h6>
+                <Search 
+                  loading={isLoading}
+                  onResultSelect={this.handleResultSelect}
+                  onSearchChange={this.handleSearchChange}
+                  results={results}
+                  value={value}
+                  {...this.props}
+                /> 
+          </Grid.Row>       
     )
   }
 }
