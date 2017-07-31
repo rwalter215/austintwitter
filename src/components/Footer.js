@@ -20,7 +20,7 @@ class Footer extends Component {
           <Sidebar as={Menu} animation='overlay' direction='bottom' visible={!visible} inverted>
             <Menu.Item name='bat'>
               <Icon src = "../../bat.png" />
-              Trending
+              Tweety Bat
             </Menu.Item>
           </Sidebar>
       

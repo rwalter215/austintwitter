@@ -44,15 +44,6 @@ class WordMap extends Component {
     WordCloud(canvas, options);
   }
 
-  static propTypes = {
-    history: PropTypes.object.isRequired
-  }
-
-  handleRedirect(){
-     this.props.history.push(`/wordCloud`)
-    
-  }
-
   render() {
     return (
       <Grid.Row centered>

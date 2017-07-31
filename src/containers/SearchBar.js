@@ -1,9 +1,12 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Search, Grid, Header, Label } from 'semantic-ui-react'
+import { Search, Grid, Header, List, Button } from 'semantic-ui-react'
+import { Link, browserHistory } from 'react-router'
 
-const source = [{'city': 'Austin'}, {'city': 'San Fransico'}, {'city': 'London'}, {'city': 'Paris'}, {'city': 'Portland'}]
-  const resultRenderer = ({ city }) => <Label content={city} />
+const source = [{'city': 'Austin'}, {'city': 'San Fransico'}, {'city': 'London'}, {'city': 'Paris'}, {'city': 'Portland'}, {'city': 'Milan'}, {'city': 'Rome'}, {'city': 'Washington, DC'}, {'city': 'Burlington'} ]
+const resultRenderer = ({ city }) => <List.Item content={city} on/>
+
+                                        
 
 export default class SearchExampleStandard extends Component {
   componentWillMount() {
@@ -31,8 +34,7 @@ export default class SearchExampleStandard extends Component {
   
   }
 
-
-
+    
   render() {
     const { isLoading, value, results } = this.state
     const mainStyle = {
@@ -54,7 +56,7 @@ export default class SearchExampleStandard extends Component {
 
     return (
       <Grid.Row style={searchStyle} centered>
-        <h2 style={mainStyle}>Trending</h2>
+        <h2 style={mainStyle}>Tweety Bat</h2>
           <h6 style={messageStyle}>A simple UI for visualizing your city's tweets</h6>
             <Search 
               loading={isLoading}

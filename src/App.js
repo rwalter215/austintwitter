@@ -17,13 +17,11 @@ class App extends Component {
   		height: 820
   	}
     return (
-    	 <div style= {divStyle}>
-    	   <Grid>
-      	    <SideBar />
-      	    <SearchBar />
-            <Footer />
-    	   </Grid>
-    	 </div> 
+  	   <Grid style= {divStyle}>
+    	    <SideBar />
+    	    <SearchBar />
+          <Footer />
+  	   </Grid>
     )
   }
 }
