@@ -29,7 +29,7 @@ ignore = {
 }
 
 //show the CRUD interface | GET
-router.get('/wordcloud', function(req, res, next){
+router.get('/wordcloud/austin', function(req, res, next){
     //res.json({ message: 'API Initialized!'});
     var result = {}
     var counter = {}
