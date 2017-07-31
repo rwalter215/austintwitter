@@ -38,7 +38,7 @@ export default class SearchExampleStandard extends Component {
   render() {
     const { isLoading, value, results } = this.state
     const mainStyle = {
-      color: "white",
+      color: "#FF5A36",
       fontSize: "48px", 
       fontFamily: "Bookman Old Style",
       marginTop: "100px",
@@ -57,7 +57,7 @@ export default class SearchExampleStandard extends Component {
     return (
       <Grid.Row style={searchStyle} centered>
         <h2 style={mainStyle}>Trending</h2>
-          <h6>A simple UI for visualizing your city's tweets</h6>
+          <h6 style={messageStyle}>A simple UI for visualizing your city's tweets</h6>
             <Search 
               loading={isLoading}
               onResultSelect={this.handleResultSelect}

@@ -1,5 +1,5 @@
 //CommentBox.js
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import WordCloud from 'wordcloud';
 import { Grid }  from 'semantic-ui-react';
@@ -44,12 +44,24 @@ class WordMap extends Component {
     WordCloud(canvas, options);
   }
 
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  }
+
+  handleRedirect(){
+     this.props.history.push(`/wordCloud`)
+    
+  }
+
   render() {
     return (
       <Grid.Row centered>
-        <canvas ref="canvas" width="600" height="600"></canvas>
-      </Grid.Row>
-
+        <form onSubmit={this.handleRedirect}> 
+        <input type='submit' value='WordMap' />
+      </form> 
+          <canvas ref="canvas" width="600" height="600"></canvas>
+        </Grid.Row>
+      
     )
   }
 }
