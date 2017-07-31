@@ -55,18 +55,18 @@ export default class SearchExampleStandard extends Component {
     }
 
     return (
-          <Grid.Row style={searchStyle} centered>
-            <h2 style={mainStyle}>Trending</h2>
-              <h6>A simple UI for visualizing your city's tweets</h6>
-                <Search 
-                  loading={isLoading}
-                  onResultSelect={this.handleResultSelect}
-                  onSearchChange={this.handleSearchChange}
-                  results={results}
-                  value={value}
-                  {...this.props}
-                /> 
-          </Grid.Row>       
+      <Grid.Row style={searchStyle} centered>
+        <h2 style={mainStyle}>Trending</h2>
+          <h6>A simple UI for visualizing your city's tweets</h6>
+            <Search 
+              loading={isLoading}
+              onResultSelect={this.handleResultSelect}
+              onSearchChange={this.handleSearchChange}
+              results={results}
+              value={value}
+              {...this.props}
+            /> 
+      </Grid.Row>       
     )
   }
 }

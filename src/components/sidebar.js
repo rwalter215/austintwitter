@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid } from 'semantic-ui-react'
 
 class SideBar extends Component {
   state = { visible: false }
@@ -15,14 +15,14 @@ class SideBar extends Component {
     }
 
     return (
-      <div style={divStyle}>
+      <Grid.Row style={divStyle}>
           <Sidebar as={Menu}  direction='top' visible={!visible} inverted>
             <Menu.Item name='bat'>
               <Icon src = "../../bat.png" />
               Tweety Bat
             </Menu.Item>
           </Sidebar>
-      </div>
+      </Grid.Row>
     )
   }
 }
