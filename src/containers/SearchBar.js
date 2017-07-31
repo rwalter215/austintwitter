@@ -4,11 +4,16 @@ import { Search, Grid, Header, List, Button } from 'semantic-ui-react'
 import { Link, browserHistory } from 'react-router'
 
 const source = [{'city': 'Austin'}, {'city': 'San Fransico'}, {'city': 'London'}, {'city': 'Paris'}, {'city': 'Portland'}, {'city': 'Milan'}, {'city': 'Rome'}, {'city': 'Washington, DC'}, {'city': 'Burlington'} ]
-const resultRenderer = ({ city }) => <List.Item content={city} on/>
 
-                                        
+const onClick = (event)=> {
+      event.preventDefault();
+      browserHistory.push('/wordCloud');
+      console.log('redirecting...');
+  }
+const resultRenderer = ({ city }) => <List onItemClick={this.redirect('/wordCloud')} content={city}/>
 
 export default class SearchExampleStandard extends Component {
+
   componentWillMount() {
     this.resetComponent()
   }
@@ -62,6 +67,7 @@ export default class SearchExampleStandard extends Component {
               loading={isLoading}
               onResultSelect={this.handleResultSelect}
               onSearchChange={this.handleSearchChange}
+              onClick={onClick}
               results={results}
               value={value}
               resultRenderer={resultRenderer}
