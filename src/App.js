@@ -9,17 +9,24 @@ import Footer from './components/Footer';
 
 class App extends Component {
   render() {
+  	const imageUrl = 'http://i.imgur.com/1LhGj.jpg'
+  	const divStyle ={
+  		color: 'white',
+  		//backgroundImage: 'url(' + imageUrl + ')',
+  		backgroundColor: '#261132',
+  		WebkitTransition: 'all',
+  		msTransition: 'all',
+  		height: 820
+  	}
     return (
-    <div>
-      <SideBar />
-      	<Grid style={{display: 'flex', justifyContent: 'center'}}>
-      		<SearchBar />
-      	</Grid>
-        <WordMap />
-        <Grid style={{position: 'absolute', bottom: 0}}>
-      	 <Footer />
-        </Grid>
-    </div>
+	 <div style= {divStyle}>
+	   <Grid>
+	    <SideBar />
+	    <SearchBar />
+      <WordMap />
+	    <Footer />
+	   </Grid>
+	 </div>
     )
   }
 }

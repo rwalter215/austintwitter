@@ -2,8 +2,9 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import WordCloud from 'wordcloud';
-import { Grid }  from 'semantic-ui-react'
-import styles from './WordMap.css'
+import { Grid }  from 'semantic-ui-react';
+//import getTrendingWords from '../../models/tweetModel.js'
+import styles from './WordMap.css';
 
 class WordMap extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class WordMap extends Component {
 
   componentWillMount () {
     const wordList = [];
+    //console.log('model: ', getTrendingWords.getTrendingWords)
 
     this.setState({words: wordList});
   }
@@ -44,9 +46,9 @@ class WordMap extends Component {
 
   render() {
     return (
-      <Grid centered>
+      <Grid.Row centered>
         <canvas ref="canvas" width="600" height="600"></canvas>
-      </Grid>
+      </Grid.Row>
 
     )
   }

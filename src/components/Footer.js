@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Sidebar, Segment, Button, Menu, Image, Icon, Header, Grid } from 'semantic-ui-react'
 
 class Footer extends Component {
   state = { visible: false }
@@ -8,22 +8,21 @@ class Footer extends Component {
 
   render() {
     const { visible } = this.state
+    const divStyle = {
+      width: 1000,
+      height: 500 
+    }
     return (
-      <div>
-        <Sidebar.Pushable as={Segment}>
+      <Grid.Row verticalAlign='bottom'>
+      <div style={divStyle}>
           <Sidebar as={Menu} animation='overlay' direction='top' visible={!visible} inverted>
             <Menu.Item name='bat'>
               <Icon src = "../../bat.png" />
               TweetyBat
             </Menu.Item>
           </Sidebar>
-          <Sidebar.Pusher>
-            <Segment basic>
-              <Header as='h3'>Application Content</Header>
-            </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
       </div>
+      </Grid.Row>
     )
   }
 }

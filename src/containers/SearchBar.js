@@ -40,26 +40,38 @@ export default class SearchExampleStandard extends Component {
   render() {
     const { isLoading, value, results } = this.state
     const style = {
-      color: "blue",
-      fontSize: "36px", 
-      margin: "30px",
-      textAlign: "center"
+      color: "white",
+      fontSize: "48px", 
+      fontFamily: "Bookman Old Style",
+      marginTop: "100px",
+      marginBottom: "30px",
+      textAlign: "center",
+      top: "50px"
     }
+    const searchStyle = {
+      position: "relative",
+      top: "170px",
+      right: "425px"
+    } 
 
     return (
-      <Grid>
-        <Grid.Column width={16} height ={8}>
-          <div style={style}>Tweety Bat</div>
-            <Search 
-              loading={isLoading}
-              onResultSelect={this.handleResultSelect}
-              onSearchChange={this.handleSearchChange}
-              results={results}
-              value={value}
-              {...this.props}
-            /> 
-        </Grid.Column>  
-      </Grid>    
+      <div style={searchStyle}>
+        <Grid style={{display: 'flex', justifyContent: 'center', }}>
+        <div>
+          <Grid.Column fluid='false' >
+            <div style={style}>Tweety Bat</div>
+              <Search 
+                loading={isLoading}
+                onResultSelect={this.handleResultSelect}
+                onSearchChange={this.handleSearchChange}
+                results={results}
+                value={value}
+                {...this.props}
+              /> 
+          </Grid.Column>  
+          </div>
+        </Grid>
+      </div>      
     )
   }
 }
