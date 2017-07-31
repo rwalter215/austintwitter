@@ -36,11 +36,12 @@ router.get('/wordcloud/austin', function(req, res, next){
     var ordered = []
     req.getConnection(function(err, conn){
         if (err) return next("Cannot Connect");
-        var query = conn.query('SELECT text FROM tweets', function(err, rows, fields){
+        var query = conn.query('SELECT text FROM twitter', function(err, rows, fields){
             if(err) {
                 console.log(err);
                 return next("Mysql error, check your query");
             }
+            
             //console.log(rows[0]);
             for (var i = 0; i < rows.length; i++){
                 //console.log(rows[i]);
@@ -73,7 +74,7 @@ router.get('/wordcloud/austin', function(req, res, next){
         
             res.json({
             	success: true,
-            	words: ordered
+            	words: rows
             });
             
             //res.render('user',{title:"RESTful Crud Example",data:rows});
