@@ -10,18 +10,19 @@ class Footer extends Component {
     const { visible } = this.state
     const divStyle = {
       width: 1000,
-      height: 500 
+      bottom: "0px", 
+
     }
     return (
-      <Grid.Row verticalAlign='bottom'>
-      <div style={divStyle}>
-          <Sidebar as={Menu} animation='overlay' direction='top' visible={!visible} inverted>
+      <Grid.Row verticalAlign='bottom' style={divStyle}>
+      
+          <Sidebar as={Menu} animation='overlay' direction='bottom' visible={!visible} inverted>
             <Menu.Item name='bat'>
               <Icon src = "../../bat.png" />
-              TweetyBat
+              Trending
             </Menu.Item>
           </Sidebar>
-      </div>
+      
       </Grid.Row>
     )
   }
