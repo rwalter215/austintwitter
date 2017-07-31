@@ -14,20 +14,19 @@
     "foreman": "^2.0.0",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
-    "mongoose": "^4.11.4",
     "morgan": "^1.8.2",
+    "mysql": "^2.14.0",
     "nodemon": "^1.11.0",
     "react": "^15.6.1",
     "react-color": "^2.13.4",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.10",
-    "semantic-ui-react": "^0.71.2"
+    "semantic-ui-react": "^0.71.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "prepublish": "zip -r target/austin_tweets.zip README.md node_modules manifest.json package.json public src server.js"
+    "eject": "react-scripts eject"
   }
 }
