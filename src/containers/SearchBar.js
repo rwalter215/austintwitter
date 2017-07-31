@@ -28,8 +28,6 @@ export default class SearchExampleStandard extends Component {
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
       const isMatch = (result) => re.test(result.title)
 
-      
-
       this.setState({
         isLoading: false,
         results: _.filter(source, isMatch),
@@ -39,27 +37,36 @@ export default class SearchExampleStandard extends Component {
 
   render() {
     const { isLoading, value, results } = this.state
-    const style = {
-      color: "blue",
-      fontSize: "36px", 
-      margin: "30px",
-      textAlign: "center"
+    const mainStyle = {
+      color: "white",
+      fontSize: "48px", 
+      fontFamily: "Bookman Old Style",
+      marginTop: "100px",
+      marginBottom: "30px"
+    }
+    const searchStyle = {
+      display: "block"
+    } 
+
+    const messageStyle = {
+      color: "white",
+      fontSize: "20px",
+      fontFamily: "Bookman Old Style"
     }
 
     return (
-      <Grid>
-        <Grid.Column width={16} height ={8}>
-          <div style={style}>Tweety Bat</div>
-            <Search 
-              loading={isLoading}
-              onResultSelect={this.handleResultSelect}
-              onSearchChange={this.handleSearchChange}
-              results={results}
-              value={value}
-              {...this.props}
-            /> 
-        </Grid.Column>  
-      </Grid>    
+          <Grid.Row style={searchStyle} centered>
+            <h2 style={mainStyle}>Trending</h2>
+              <h6>A simple UI for visualizing your city's tweets</h6>
+                <Search 
+                  loading={isLoading}
+                  onResultSelect={this.handleResultSelect}
+                  onSearchChange={this.handleSearchChange}
+                  results={results}
+                  value={value}
+                  {...this.props}
+                /> 
+          </Grid.Row>       
     )
   }
 }
