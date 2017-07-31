@@ -52,12 +52,12 @@ class StreamListener(tweepy.StreamListener):
             tweet_id = data['id']
             screen_name = data['user']['screen_name']
             created_at = parser.parse(data['created_at']).strftime("%Y-%m-%d %H:%M:%S")
-
             if data['coordinates'] is not None:
                 lat = data['coordinates']['coordinates'][1]
                 lon = data['coordinates']['coordinates'][0]
             else:
                 lat = lon = None
+            text = data['text']
             #print out a message to the screen that we have collected a tweet
             print ("Tweet collected at %s") % (str(created_at))
 

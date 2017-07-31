@@ -1,21 +1,81 @@
 var express = require('express');
 var router = express.Router();
+var collections = require('pycollections');
+
+function sortByCount (wordsMap) {
+
+  // sort by count in descending order
+  var finalWordsArray = [];
+  finalWordsArray = Object.keys(wordsMap).map(function (key) {
+    return {
+      name: key,
+      total: wordsMap[key]
+    };
+  });
+
+  finalWordsArray.sort(function (a, b) {
+    return b.total - a.total;
+  });
+
+  return finalWordsArray;
+
+}
+
+ignore = {
+    "IS": "", "BY": "", "IN": "", "TO": "", "A": "", "AT": "", "FOR": "", "THE": "", "AND": "", "OF": "",
+    "OUR": "", "ON": "", "I": "", "YOU": "", "THIS": "", "BE": "", "I'M": "", "ST": "", "YOU": "", "OUT": "", 
+    "IF": "", "I'LL": "", "IT": "", "SO": "", "AN": "", "WE": "", "ME": "", "HOW": "", "NOW": "", "MY": "",
+    "IT'S": "", "HIS": "", "WAS": "", "BUT": "", "THAT": "", "WITH": ""
+}
 
 //show the CRUD interface | GET
 router.get('/wordcloud', function(req, res, next){
     //res.json({ message: 'API Initialized!'});
-    
+    var result = {}
+    var counter = {}
+    var ordered = []
     req.getConnection(function(err, conn){
         if (err) return next("Cannot Connect");
-        var query = conn.query('SELECT text FROM tweets', function(err, rows){
+        var query = conn.query('SELECT text FROM tweets', function(err, rows, fields){
             if(err) {
                 console.log(err);
                 return next("Mysql error, check your query");
             }
+            //console.log(rows[0]);
+            for (var i = 0; i < rows.length; i++){
+                //console.log(rows[i]);
+                //console.log(rows[i]['text'].match(/(\b[^\s]+\b)/g));
+                var words = rows[i]['text'].match(/(\b[^\s]+\b)|(#[^\s]+\b)/g);
+                //console.log(words.length);
+                
+                for (var j = 0; j < words.length; j++) {
+                    //console.log(words[j]);
+                    //console.log(counter.mostCommon());
+                    if (words[j].toUpperCase() in counter) {
+                        counter[words[j].toUpperCase()] += 1;
+                    } else if (!(words[j].toUpperCase() in ignore)) {
+                        counter[words[j].toUpperCase()] = 1;
+                    }
+                    //console.log(counter[words[j]]);
+                    //console.log(counter['items']());
+                }
+            }
+            var sortedWords = sortByCount(counter);
+            console.log(sortedWords);
+            //console.log(counter['items']());
+            //mostCommon = counter.mostCommon();
+            //console.log(mostCommon.length);
+            
+            for (var i = 0; i < sortedWords.length; i++) {
+                //console.log(mostCommon[0]);
+                ordered.push(sortedWords[i]['name']);
+            }
+        
             res.json({
             	success: true,
-            	tweets: rows
+            	words: ordered
             });
+            
             //res.render('user',{title:"RESTful Crud Example",data:rows});
          });
     });
