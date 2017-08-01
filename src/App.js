@@ -14,16 +14,13 @@ class App extends Component {
   		backgroundColor: '#261132',
   		WebkitTransition: 'all',
   		msTransition: 'all',
-  		height: 820
+  		height: 650
   	}
     return (
-    	 <div style= {divStyle}>
-    	   <Grid>
-      	    <SideBar />
-      	    <SearchBar />
-            <Footer />
-    	   </Grid>
-    	 </div> 
+  	   <Grid style= {divStyle}>
+    	    <SideBar />
+    	    <SearchBar />
+  	   </Grid>
     )
   }
 }

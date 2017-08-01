@@ -13,8 +13,7 @@ ReactDOM.render(
 		 <Router history={browserHistory}>
 		 	<Route path="/" component={App} />
 		 	<Route path="/wordCloud" component={WordMap} />
-		 </Router>
-		<Footer /> 
+		 </Router> 
 	 </div>
 ,document.getElementById('root')
 );
