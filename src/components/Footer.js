@@ -11,19 +11,17 @@ class Footer extends Component {
     const divStyle = {
       width: 1000,
       bottom: "0px",
-      color: '#FF5A36' 
+      color: '#FF5A36'
 
     }
     return (
-      <Grid.Row verticalAlign='bottom' style={divStyle}>
-      
-          <Sidebar as={Menu} animation='overlay' direction='bottom' visible={!visible} inverted>
-            <Menu.Item name='bat'>
-              <Icon src = "../../bat.png" />
-              Trending
-            </Menu.Item>
-          </Sidebar>
-      
+      <Grid.Row style={divStyle}>
+        <Sidebar as={Menu} animation='overlay' direction='bottom' visible={!visible} inverted>
+          <Menu.Item name='bat'>
+            <Icon src = "../../bat.png" />
+            Tweety Bat
+          </Menu.Item>
+        </Sidebar>
       </Grid.Row>
     )
   }

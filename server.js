@@ -35,7 +35,7 @@ app.use(expressValidator());
 //app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 //app.use('/node_modules',  express.static(__dirname + '/node_modules'));
 
-//To prevent errors from Cross Origin Resource Sharing, we will set 
+//To prevent errors from Cross Origin Resource Sharing, we will set
 //our headers to allow CORS with middleware like so:
 app.use(function(req, res, next) {
  res.setHeader('Access-Control-Allow-Origin', '*');
