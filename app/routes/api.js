@@ -51,13 +51,13 @@ router.get('/wordcloud/austin', function(req, res, next){
     var words = []
     req.getConnection(function(err, conn){
         if (err) return next("Cannot Connect");
-        var query = conn.query('SELECT text FROM tweets', function(err, rows){
+        var query = conn.query('SELECT text FROM test.tweets', function(err, rows){
             if(err) {
                 console.log(err);
                 return next("Mysql error, check your query");
             }
             //console.log(rows[0]);
-            for (var i = 0; i < 600; i++){
+            for (var i = 0; i < 100; i++){
                 //console.log(rows[i]);
                 //console.log(rows[i]['text'].match(/(\b[^\s]+\b)|(#[^\s]+\b)/g));
                 words = rows[i]['text'].match(/(\b[^\s]+\b)|(#[^\s]+\b)|(@[^\s]+\b)/g);
