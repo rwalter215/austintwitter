@@ -24,6 +24,11 @@ class WordMap extends Component {
     let words = [['ATX', 12]];
     const canvas = ReactDOM.findDOMNode(this.refs.canvas)
     this.getTweet().then((resp) => {
+      const data = resp.data.words;
+      for(let i = 0; i < 50; i++) {
+        words.push([data[i], Math.floor(Math.random() * 5) + 1])
+      }
+      this.setState({data: words})
       const options = {
         list: this.state.data,
         shape: "circle",
@@ -41,11 +46,6 @@ class WordMap extends Component {
         },
         backgroundColor:"#261132"
       }
-      const data = resp.data.words;
-      for(let i = 0; i < 25; i++) {
-        words.push([data[i], Math.floor(Math.random() * 5) + 1])
-      }
-      this.setState({data: words})
       WordCloud(canvas, options);
     })
 
